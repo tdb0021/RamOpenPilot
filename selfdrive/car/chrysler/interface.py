@@ -24,14 +24,14 @@ class CarInterface(CarInterfaceBase):
 
     # Speed conversion:              20, 45 mph
     ret.wheelbase = 3.88  # 2021 Ram 1500
-    ret.steerRatio = 18  # 4x4 crew cab long bed
+    ret.steerRatio = 15.5  # 4x4 crew cab long bed
     ret.mass = 2493. + STD_CARGO_KG  # kg curb weight 2021 Ram 1500
     
 #_______COMMA PID TUNING_______ -uncomment to enable
     ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kiBP = [[0.], [0.]]
     ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.025]]
     ret.lateralTuning.pid.kf = 0.00006
-    ret.steerActuatorDelay = 0.2  # may need tuning
+    ret.steerActuatorDelay = 0.13  # may need tuning
     ret.steerLimitTimer = 0.4
     ret.steerRateCost = 1.0  # may need tuning
 
