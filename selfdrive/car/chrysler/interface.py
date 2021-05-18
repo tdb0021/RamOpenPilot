@@ -28,12 +28,13 @@ class CarInterface(CarInterfaceBase):
     ret.mass = 2493. + STD_CARGO_KG  # kg curb weight 2021 Ram 1500
     
 #_______COMMA PID TUNING_______ -uncomment to enable
-    ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kiBP = [[0.], [0.]]
-    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.025]]
-    ret.lateralTuning.pid.kf = 0.00006
-    ret.steerActuatorDelay = 0.13  # may need tuning
+    ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kiBP = [[0.], [0.]] # breakpoints for P, and I. measured in m/s.
+    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.025]] # values for P, and I.  higher values steer more.  I smoothes P.  
+                                                                            # make them both the same for initial tuning, which nulls the breakpoints.
+    ret.lateralTuning.pid.kf = 0.00006 # D can be lowered to 0 if there's ping-pong on straights but everything else is good.
+    ret.steerActuatorDelay = 0.13  #  actual delay from LKAS message sent -> actuator (EPS) steering, in seconds. affects openpilot turn in, especially.
     ret.steerLimitTimer = 0.4
-    ret.steerRateCost = 1.0  # may need tuning
+    ret.steerRateCost = 1.0  # multiplier.  higher values steer more.  last resort.
 
 # timeconstant is smoothing. Higher values == more smoothing
 # actuatoreffectiveness is how much it steers. Lower values == more steering
